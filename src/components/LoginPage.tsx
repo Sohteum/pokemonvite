@@ -2,21 +2,21 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
-  //   // const [IsLogged, setIsLogged] = useRecoilState(LoginStateAtom);
+    // const [IsLogged, setIsLogged] = useRecoilState(LoginStateAtom);
 
-  //   // const onClickLoginHandler=()=>{
-  //   //     setIsLogged()
-  //   //   }
-  //   //   const [form, setForm] = useRecoilState<any>(LoginStateAtom);
+    // const onClickLoginHandler=()=>{
+    //     setIsLogged()
+    //   }
+    //   const [form, setForm] = useRecoilState<any>(LoginStateAtom);
 
-  //   const [id, setId] = useState('');
-  //   const [password, setPassword] = useState('');
+    // const [id, setId] = useState('');
+    // const [password, setPassword] = useState('');
 
-  //   const onSigninHandler = (e: any) => {
-  //     e.prevent.default();
-  //     // if (id !== ""  && password !== "")
-  //     //   navigate("/");
-  //     }
+    // const onSigninHandler = (e: any) => {
+    //   e.prevent.default();
+    //   // if (id !== ""  && password !== "")
+    //   //   navigate("/");
+    //   }
 
   //   return (
   //     <div className="loginPage">
@@ -57,50 +57,50 @@ const LoginPage = () => {
   //   );
   // };
 
-  //   const [userName, setUserName] = useRecoilState(LoginStateAtom);
-  //   // useSetRecoilState : 상태를 업데이트하는 setter 함수.
-  //   // 현재 로그인한 userName을 전역으로 관리한다.
-  //   const [input, setInput] = useState("");
-  //   const [state, setState] = useState({
-  //     isLogined: false,
-  //     userName: "",
-  //   });
-  //   const loginText = state.isLogined ? "LOGOUT" : "LOGIN";
+//     const [userName, setUserName] = useRecoilState(LoginStateAtom);
+//     // useSetRecoilState : 상태를 업데이트하는 setter 함수.
+//     // 현재 로그인한 userName을 전역으로 관리한다.
+//     const [input, setInput] = useState("");
+//     const [state, setState] = useState({
+//       isLogined: false,
+//       userName: "",
+//     });
+//     const loginText = state.isLogined ? "LOGOUT" : "LOGIN";
 
-  //   function onChangeInputHandler(e: any) {
-  //     const text = e.target.value;
-  //     setInput(text);
-  //   }
+//     function onChangeInputHandler(e: any) {
+//       const text = e.target.value;
+//       setInput(text);
+//     }
 
-  //   function onClickSubmitHandler(e: any) {
-  //     e.preventDefault();
-  //     if (!state.isLogined) {
-  //       setState({
-  //         userName: input,
-  //         isLogined: true,
-  //       });
-  //       setUserName(userName);
-  //       return;
-  //     }
-  //     setState({
-  //       isLogined: false,
-  //       userName: "",
-  //     });
-  //   }
+//     function onClickSubmitHandler(e: any) {
+//       e.preventDefault();
+//       if (!state.isLogined) {
+//         setState({
+//           userName: input,
+//           isLogined: true,
+//         });
+//         setUserName(userName);
+//         return;
+//       }
+//       setState({
+//         isLogined: false,
+//         userName: "",
+//       });
+//     }
 
-  //   const inputText = <input type="text" onChange={onChangeInputHandler} />;
+//     const inputText = <input type="text" onChange={onChangeInputHandler} />;
 
-  //   return (
-  //     <div>
-  //       <form>
-  //         {state.isLogined ? <h2>{state.userName}</h2> : inputText}
-  //         <button type="button" onClick={onClickSubmitHandler}>
-  //           {loginText}
-  //         </button>
-  //       </form>
-  //     </div>
-  //   );
-  // };
+//     return (
+//       <div>
+//         <form>
+//           {state.isLogined ? <h2>{state.userName}</h2> : inputText}
+//           <button type="button" onClick={onClickSubmitHandler}>
+//             {loginText}
+//           </button>
+//         </form>
+//       </div>
+//     );
+// }
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");

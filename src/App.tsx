@@ -8,14 +8,13 @@ import { IpokemonDataAtom, PokemonNameAtom, modalAtom, pokemonListAtom } from ".
 const App = () => {
   const [pokemonList, setPokemonList] = useState([]);
   const [loading, setLoading] = useState(true);
-  // const [url, setUrl] = useRecoilState(pokemonListAtom);
   const navigate = useNavigate();
+  // const [url, setUrl] = useRecoilState(pokemonListAtom);
+ 
   const [name, setName] = useRecoilState(PokemonNameAtom);
-  const location = useLocation();
-  const detailName = location.pathname.split("/")[1];
   const [searchTerm, setSearchTerm] = useState("");
-
   const [data, setData] = useRecoilState(IpokemonDataAtom);
+
   
   
   useEffect(() => {
@@ -74,8 +73,7 @@ const App = () => {
         ))}
       </ul>
 
-      {/* detailName */}
-     
+      {/* {detailName === name && <PokeDetails data={pokemonList}/>} */}
     </div>
   );
 };

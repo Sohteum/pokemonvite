@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import PokeDetails from "./PokeDetails";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { IpokemonData, IpokemonDataAtom, PokemonIdAtom, PokemonNameAtom, modalAtom, pokemonListAtom } from "../atom/atom";
 import { useRecoilState, useSetRecoilState } from "recoil";
+
 
 
 
@@ -16,7 +17,8 @@ const PokeList = ({url}:{url:any}) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [modalOpen, setModalOpen] = useRecoilState(modalAtom)
   const setName = useSetRecoilState(PokemonNameAtom)
-
+ const location = useLocation();
+  const detailName = location.pathname.split("/")[1];
 
   useEffect(() => {
     axios

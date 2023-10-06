@@ -4,6 +4,7 @@ import { IpokemonData, modalAtom } from "../atom/atom";
 import styled from "styled-components";
 import {  useSetRecoilState } from "recoil";
 
+
 const ModalList = styled.div`
   z-index: 9999;
 `;
