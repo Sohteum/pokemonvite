@@ -1,0 +1,28 @@
+.modalOpen {
+  position: fixed;
+  top: 50vh;
+  left: 50vw;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 600px;
+  background-color: rgb(255, 205, 185);
+  border-radius: 30px;
+}
+
+.close > i {
+  justify-content: end;
+  font-size: 3rem;
+  box-sizing: border-box;
+  margin: 20px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.modalOpen > .id-number {
+  margin: 0 auto;
+}
+
+.modal-image {
+  padding: 0 100px 0 100px;
+  width: 100%;
+  max-width: 250px;
+}/*# sourceMappingURL=modal.css.map */
