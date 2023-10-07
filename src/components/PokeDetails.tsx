@@ -1,8 +1,7 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { IpokemonData, modalAtom } from "../atom/atom";
 import styled from "styled-components";
-import {  useSetRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 
 
 const ModalList = styled.div`
@@ -10,24 +9,20 @@ const ModalList = styled.div`
 `;
 
 const PokeDetails = ({
-  id,
-  image,
-  type,
-  name,
+  pokemon,
 }: {
-  id: number;
-  image: string;
-  type: string;
-  name: string;
+  pokemon: IpokemonData | null;
 }) => {
-  // const modalClose = () => {
-  //   setModalOpen(false);
-  // };
-
   const setModalOpen = useSetRecoilState(modalAtom);
   const fnClose = () => {
-    setModalOpen(false);
+    setModalOpen(0);
   };
+
+  console.log(name, 'tt')
+
+
+if(pokemon == null) return <div>pokemon정보가 없습니다</div>;
+
 
   return (
     <ModalList id="ModalList">
@@ -36,11 +31,11 @@ const PokeDetails = ({
           <div className="close" onClick={fnClose}>
             <i className="fa-solid fa-circle-xmark"></i>
           </div>
-          <p className="id-number">#Id: {id}</p>
-          <img className="modal-image" src={image} alt={name} />
+          <p className="id-number">#Id: {pokemon!.id}</p>
+          <img className="modal-image" src={pokemon!.image} alt={pokemon!.name} />
           <div className="infomation">
-            <p className="modal-type">type: {type}</p>
-            <p className="modal-name">name: {name}</p>
+            <p className="modal-type">type: {pokemon!.type}</p>
+            <p className="modal-name">name: {pokemon!.name}</p>
           </div>
         </div>
       </Link>

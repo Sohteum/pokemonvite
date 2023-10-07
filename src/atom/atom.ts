@@ -1,19 +1,19 @@
 import { atom } from "recoil";
 
-export const LoginStateAtom = atom({ 
+export const LoginStateAtom = atom({
 
     key: 'LoginState',
     default: false,
 })
 
-export const PokemonNameAtom = atom<string>({ 
+export const PokemonNameAtom = atom<string>({
     key: 'PokemonNameAtom',
     default: '',
 })
 
 
 
-export const PokemonIdAtom = atom<number>({ 
+export const PokemonIdAtom = atom<number>({
     key: 'PokemonIdAtom',
     default: 0,
 })
@@ -24,27 +24,27 @@ export interface IpokemonData {
     type: string;
     id: number;
     image: string;
-  }
+}
 
 
 
-export const IpokemonDataAtom = atom<IpokemonData>({ 
+export const IpokemonDataAtom = atom<IpokemonData>({
     key: 'PokemonIdAtom',
     default: {
         name: "",
         type: "",
         id: 0,
-        image:""
+        image: ""
     },
 })
 
 
 export const modalAtom = atom<boolean>({
-    key:"modalAtomState",
+    key: "modalAtomState",
     default: false
 })
 
 export const pokemonListAtom = atom({
-    key:"pokemonListState",
+    key: "pokemonListState",
     default: {}
 })

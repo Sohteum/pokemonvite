@@ -12,6 +12,7 @@ import {
   
 } from 'recoil'
 import PokeList from './components/PokeList';
+import PokeDetails from './components/PokeDetails';
 const url = 'sdf';//...?
 // const setModalOpen = 'sdf';//...?
 const router = createBrowserRouter([
@@ -35,10 +36,10 @@ const router = createBrowserRouter([
     path: "/login",
     element: <LoginPage />
   },
-  // {
-  //   path: "/Details",
-  //   element: <PokeDetails />
-  // }
+  {
+    path: "/Details",
+    element: <PokeDetails pokemon={null}/>
+  }
 
 ]);
 
