@@ -1,22 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { pokeUserNameAtom } from "../atom/atom";
 
 const LoginPage = () => {
-    // const [IsLogged, setIsLogged] = useRecoilState(LoginStateAtom);
+  // const [IsLogged, setIsLogged] = useRecoilState(LoginStateAtom);
 
-    // const onClickLoginHandler=()=>{
-    //     setIsLogged()
-    //   }
-    //   const [form, setForm] = useRecoilState<any>(LoginStateAtom);
+  // const onClickLoginHandler=()=>{
+  //     setIsLogged()
+  //   }
+  //   const [form, setForm] = useRecoilState<any>(LoginStateAtom);
 
-    // const [id, setId] = useState('');
-    // const [password, setPassword] = useState('');
+  // const [id, setId] = useState('');
+  // const [password, setPassword] = useState('');
 
-    // const onSigninHandler = (e: any) => {
-    //   e.prevent.default();
-    //   // if (id !== ""  && password !== "")
-    //   //   navigate("/");
-    //   }
+  // const onSigninHandler = (e: any) => {
+  //   e.prevent.default();
+  //   // if (id !== ""  && password !== "")
+  //   //   navigate("/");
+  //   }
 
   //   return (
   //     <div className="loginPage">
@@ -57,54 +59,55 @@ const LoginPage = () => {
   //   );
   // };
 
-//     const [userName, setUserName] = useRecoilState(LoginStateAtom);
-//     // useSetRecoilState : 상태를 업데이트하는 setter 함수.
-//     // 현재 로그인한 userName을 전역으로 관리한다.
-//     const [input, setInput] = useState("");
-//     const [state, setState] = useState({
-//       isLogined: false,
-//       userName: "",
-//     });
-//     const loginText = state.isLogined ? "LOGOUT" : "LOGIN";
+  //     const [userName, setUserName] = useRecoilState(LoginStateAtom);
+  //     // useSetRecoilState : 상태를 업데이트하는 setter 함수.
+  //     // 현재 로그인한 userName을 전역으로 관리한다.
+  //     const [input, setInput] = useState("");
+  //     const [state, setState] = useState({
+  //       isLogined: false,
+  //       userName: "",
+  //     });
+  //     const loginText = state.isLogined ? "LOGOUT" : "LOGIN";
 
-//     function onChangeInputHandler(e: any) {
-//       const text = e.target.value;
-//       setInput(text);
-//     }
+  //     function onChangeInputHandler(e: any) {
+  //       const text = e.target.value;
+  //       setInput(text);
+  //     }
 
-//     function onClickSubmitHandler(e: any) {
-//       e.preventDefault();
-//       if (!state.isLogined) {
-//         setState({
-//           userName: input,
-//           isLogined: true,
-//         });
-//         setUserName(userName);
-//         return;
-//       }
-//       setState({
-//         isLogined: false,
-//         userName: "",
-//       });
-//     }
+  //     function onClickSubmitHandler(e: any) {
+  //       e.preventDefault();
+  //       if (!state.isLogined) {
+  //         setState({
+  //           userName: input,
+  //           isLogined: true,
+  //         });
+  //         setUserName(userName);
+  //         return;
+  //       }
+  //       setState({
+  //         isLogined: false,
+  //         userName: "",
+  //       });
+  //     }
 
-//     const inputText = <input type="text" onChange={onChangeInputHandler} />;
+  //     const inputText = <input type="text" onChange={onChangeInputHandler} />;
 
-//     return (
-//       <div>
-//         <form>
-//           {state.isLogined ? <h2>{state.userName}</h2> : inputText}
-//           <button type="button" onClick={onClickSubmitHandler}>
-//             {loginText}
-//           </button>
-//         </form>
-//       </div>
-//     );
-// }
+  //     return (
+  //       <div>
+  //         <form>
+  //           {state.isLogined ? <h2>{state.userName}</h2> : inputText}
+  //           <button type="button" onClick={onClickSubmitHandler}>
+  //             {loginText}
+  //           </button>
+  //         </form>
+  //       </div>
+  //     );
+  // }
 
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useRecoilState(pokeUserNameAtom);
   const [password, setPassword] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [tmpUsername, setTmpUsername] = useState("");
+  // const [isLoggedIn, setIsLoggedIn] = useRecoilState(false);
   const navi = useNavigate();
 
   // 로그인 상태 유지를 위한 useEffect
@@ -112,29 +115,30 @@ const LoginPage = () => {
     const storedUsername = localStorage.getItem("username");
     if (storedUsername) {
       setUsername(storedUsername);
-      setIsLoggedIn(true);
+      // setIsLoggedIn(true);
     }
   }, []);
 
   const handleLogin = () => {
     // 실제 로그인 로직은 백엔드와 통합해야 합니다.
     // 여기에서는 간단히 localStorage를 사용하여 로그인 상태를 유지합니다.
-    localStorage.setItem("username", username);
-    setIsLoggedIn(true);
+    localStorage.setItem("username", tmpUsername);
+    setUsername(tmpUsername);
+    // setIsLoggedIn(true);
     navi("/"); //홈으로 이동
   };
 
   const handleLogout = () => {
     // 로그아웃 시 로컬 스토리지에서 사용자 정보를 삭제합니다.
     localStorage.removeItem("username");
-    setIsLoggedIn(false);
+    // setIsLoggedIn(false);
     setUsername("");
     navi("/"); //홈으로 이동
   };
 
   return (
     <div>
-      {isLoggedIn ? (
+      {username ? (
         <div>
           <p>로그인 되었습니다. 사용자: {username}</p>
           <button onClick={handleLogout}>로그아웃</button>
@@ -144,8 +148,8 @@ const LoginPage = () => {
           <input
             type="text"
             placeholder="사용자 이름"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={tmpUsername}
+            onChange={(e) => setTmpUsername(e.target.value)}
           />
           <input
             type="password"

@@ -2,11 +2,15 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import PokeList from "./components/PokeList";
 import { useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { pokeUserNameAtom } from "./atom/atom";
 
 const App = () => {
   const [pokemonList, setPokemonList] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const [username, setUsername] = useRecoilState(pokeUserNameAtom);
+
 
   useEffect(() => {
     const apiUrl = "https://pokeapi.co/api/v2/pokemon";
@@ -53,7 +57,8 @@ const App = () => {
             navigate("/login");
           }}
         >
-          login
+          {/* user */}
+          {username ? username : 'Login'}
         </button>
       </header>
       <ul className="all-container">

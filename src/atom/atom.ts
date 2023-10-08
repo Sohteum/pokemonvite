@@ -39,12 +39,21 @@ export const IpokemonDataAtom = atom<IpokemonData>({
 })
 
 
-export const modalAtom = atom<boolean>({
+export const modalAtom = atom<number>({
     key: "modalAtomState",
-    default: false
+    default: 0
 })
 
 export const pokemonListAtom = atom({
     key: "pokemonListState",
     default: {}
+})
+
+// export const pokeLoggedInAtom = atom<boolean>({
+//     key: "pokeLoggedInState",
+//     default: false
+// })
+export const pokeUserNameAtom = atom<string>({
+    key: "pokeUserNameState",
+    default: ''
 })
