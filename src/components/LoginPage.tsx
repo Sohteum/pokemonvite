@@ -1,108 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { pokeUserNameAtom } from "../atom/atom";
 
 const LoginPage = () => {
-  // const [IsLogged, setIsLogged] = useRecoilState(LoginStateAtom);
-
-  // const onClickLoginHandler=()=>{
-  //     setIsLogged()
-  //   }
-  //   const [form, setForm] = useRecoilState<any>(LoginStateAtom);
-
-  // const [id, setId] = useState('');
-  // const [password, setPassword] = useState('');
-
-  // const onSigninHandler = (e: any) => {
-  //   e.prevent.default();
-  //   // if (id !== ""  && password !== "")
-  //   //   navigate("/");
-  //   }
-
-  //   return (
-  //     <div className="loginPage">
-  //       <form className="loginForm" onSubmit={onSigninHandler}>
-  //         <div className="logoImg">
-  //           <img
-  //             src={process.env.PUBLIC_URL+"/logo.png"}
-  //             alt="logo img"
-  //           />
-  //         </div>
-  //         <p className="text">Email</p>
-  //         <p>
-  //           <input
-  //             className="input"
-  //             type="email"
-  //             value={id}
-  //             onChange={(e: any) => {
-  //               setId(e.target.value);
-  //             }}
-  //             required
-  //           />
-  //         </p>
-  //         <p className="password">Password</p>
-  //         <p>
-  //           <input
-  //             className="input"
-  //             type="password"
-  //             value={password}
-  //             onChange={(e: any) => {
-  //               setPassword(e.target.value);
-  //             }}
-  //             required
-  //           />
-  //         </p>
-  //         <button className="signin" type="submit">login</button>
-  //       </form>
-  //     </div>
-  //   );
-  // };
-
-  //     const [userName, setUserName] = useRecoilState(LoginStateAtom);
-  //     // useSetRecoilState : 상태를 업데이트하는 setter 함수.
-  //     // 현재 로그인한 userName을 전역으로 관리한다.
-  //     const [input, setInput] = useState("");
-  //     const [state, setState] = useState({
-  //       isLogined: false,
-  //       userName: "",
-  //     });
-  //     const loginText = state.isLogined ? "LOGOUT" : "LOGIN";
-
-  //     function onChangeInputHandler(e: any) {
-  //       const text = e.target.value;
-  //       setInput(text);
-  //     }
-
-  //     function onClickSubmitHandler(e: any) {
-  //       e.preventDefault();
-  //       if (!state.isLogined) {
-  //         setState({
-  //           userName: input,
-  //           isLogined: true,
-  //         });
-  //         setUserName(userName);
-  //         return;
-  //       }
-  //       setState({
-  //         isLogined: false,
-  //         userName: "",
-  //       });
-  //     }
-
-  //     const inputText = <input type="text" onChange={onChangeInputHandler} />;
-
-  //     return (
-  //       <div>
-  //         <form>
-  //           {state.isLogined ? <h2>{state.userName}</h2> : inputText}
-  //           <button type="button" onClick={onClickSubmitHandler}>
-  //             {loginText}
-  //           </button>
-  //         </form>
-  //       </div>
-  //     );
-  // }
 
   const [username, setUsername] = useRecoilState(pokeUserNameAtom);
   const [password, setPassword] = useState("");
@@ -145,13 +46,16 @@ const LoginPage = () => {
         </div>
       ) : (
         <div>
+
           <input
-            type="text"
+            className="email"
+            type="email"
             placeholder="사용자 이름"
             value={tmpUsername}
             onChange={(e) => setTmpUsername(e.target.value)}
           />
           <input
+            className="password"
             type="password"
             placeholder="비밀번호"
             value={password}

@@ -8,9 +8,8 @@ import { pokeUserNameAtom } from "./atom/atom";
 const App = () => {
   const [pokemonList, setPokemonList] = useState([]);
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
+  const navi = useNavigate();
   const [username, setUsername] = useRecoilState(pokeUserNameAtom);
-
 
   useEffect(() => {
     const apiUrl = "https://pokeapi.co/api/v2/pokemon";
@@ -26,6 +25,12 @@ const App = () => {
         setLoading(false);
       });
   }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("username");
+    setUsername("");
+    navi("/"); //홈으로 이동
+  };
 
   if (loading) return <div>Loading...</div>;
 
@@ -58,7 +63,11 @@ const App = () => {
           }}
         >
           {/* user */}
-          {username ? username : 'Login'}
+          {username ? 
+          <div>
+            <p>{username} 님 환영합니다</p>
+            <button onClick={handleLogout}>로그아웃</button>
+            </div> : 'Login'}
         </button>
       </header>
       <ul className="all-container">
