@@ -11,7 +11,7 @@
 }
 
 .logoImg{
-    max-width: 400px;
+    max-width: 350px;
     margin-bottom: 50px;
     img{
         width:100%;
@@ -43,11 +43,15 @@ box-shadow: 2px 2px 10px  rgb(201, 201, 201);
     padding: 5px;
 }
 
+.inputText {
+    font-size: 0.7rem;
+}
+
 
 .signin{
     width:340px;
     height: 35px;
-    margin: 17px 0 17px 0;
+    margin-top: 17px;
     padding: 5px;
     font-weight: bold;
     color:#FFF;

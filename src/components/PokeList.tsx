@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import PokeDetails from "./PokeDetails";
 import { Link } from "react-router-dom";
-import { IpokemonData, modalAtom, } from "../atom/atom";
+import { IpokemonData, modalAtom, searchedPokeTermAtom, } from "../atom/atom";
 import { useRecoilState, } from "recoil";
 
 
@@ -13,6 +13,8 @@ const PokeList = ({ url }: { url: string }) => {
   const [pokemon, setPokemon] = useState<IpokemonData>(); // 스테이트에서 타입설정하기 확인
   const [loading, setLoading] = useState<boolean>(true);
   const [modalOpen, setModalOpen] = useRecoilState(modalAtom)
+  const [searchedPokemonName, setSearchedPokemonName] = useRecoilState(searchedPokeTermAtom);
+
 
   useEffect(() => {
     axios
@@ -40,22 +42,30 @@ const PokeList = ({ url }: { url: string }) => {
 
   return (
     <>
-      <Link to={pokemon!.name} onClick={() => setModalOpen(pokemon.id)}>
-        {/* 여기서 온클릭하면 왜 모달페이지가 안열림? */}
-        <li className="thumb-container detail-wrapper" >
-          <p className="number">#Id: {pokemon!.id}</p>
-          <img className="image" src={pokemon!.image} alt={pokemon!.name} />
-          <p>{pokemon!.type}</p>
-          <p className="name">{pokemon!.name}</p>
-        </li>
-      </Link>
-      {/* 여기서 맵이 돌고있어서 클릭하면 전부다 나오니까 마지막인 래티켓이 나온것.
-      이걸 리코일로 false로 억제했는데 트루로 바뀌니가 다나온거 */}
 
+      {pokemon.name.includes(searchedPokemonName)|| pokemon.type.includes(searchedPokemonName)?
+        // 여기서 아까 리코일에 담은걸 리스트가 포함하고 있으면 그 값을 보여줌 아니면 빈값 
+        // 그럼 왜 검색어를 입력하지않았을때는 리스트를 보여주는가?
+        (
+          <Link to={pokemon!.name} onClick={() => setModalOpen(pokemon.id)}>
+            {/* 여기서 온클릭하면 왜 모달페이지가 안열림? */}
+            <li className="thumb-container detail-wrapper" >
+              <p className="number">#Id: {pokemon!.id}</p>
+              <img className="image" src={pokemon!.image} alt={pokemon!.name} />
+              <p>{pokemon!.type}</p>
+              <p className="name">{pokemon!.name}</p>
+            </li>
+          </Link>
+        )
+        : (
+          ''
+        )
+      }
       {modalOpen == pokemon.id && <PokeDetails pokemon={pokemon} />}
-      {/* 불리언값으로 호출했었음. 그럼 모달이 열리면 모든애들이 트루 */}
-    </>
+      {/* 모달을 삼항연산자에 포함시키면 모달이 리스트에 가려짐 */}
 
+
+    </>
   );
 };
 
@@ -63,3 +73,7 @@ const PokeList = ({ url }: { url: string }) => {
 export default PokeList;
 
 //1. n번째 포켓몬정보 뿌리기
+
+{/* 여기서 맵이 돌고있어서 클릭하면 전부다 나오니까 마지막인 래티켓이 나온것.
+      이걸 리코일로 false로 억제했는데 트루로 바뀌니가 다나온거 */}
+{/* 불리언값으로 호출했었음. 그럼 모달이 열리면 모든애들이 트루 */ }

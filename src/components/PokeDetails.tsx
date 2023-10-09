@@ -18,7 +18,6 @@ const PokeDetails = ({
     setModalOpen(0);
   };
 
-  console.log(name, 'tt')
 
 
 if(pokemon == null) return <div>pokemon정보가 없습니다</div>;

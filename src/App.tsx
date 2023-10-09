@@ -3,10 +3,11 @@ import axios from "axios";
 import PokeList from "./components/PokeList";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { pokeUserNameAtom } from "./atom/atom";
+import { pokeUserNameAtom,  searchedPokeTermAtom } from "./atom/atom";
 
 const App = () => {
   const [pokemonList, setPokemonList] = useState([]);
+  const [searchedPokemonName, setSearchedPokemonName] = useRecoilState(searchedPokeTermAtom);
   const [loading, setLoading] = useState(true);
   const navi = useNavigate();
   const [username, setUsername] = useRecoilState(pokeUserNameAtom);
@@ -26,10 +27,13 @@ const App = () => {
       });
   }, []);
 
+  const searchTermHandler = (e: any) => {
+    e.preventDefault()
+  }
+
   const handleLogout = () => {
     localStorage.removeItem("username");
     setUsername("");
-    navi("/"); //홈으로 이동
   };
 
   if (loading) return <div>Loading...</div>;
@@ -38,35 +42,28 @@ const App = () => {
     <div className="pokemon-container">
       <header>
         <h1>Pokemon Evolution</h1>
-        {/* <input
-        type="text"
-        placeholder="Search"
-        onChange={(e) => {
-          setSearchTerm(e.target.value);
-        }}
-        {pokemonList.filter(value:any) =>{
-          if(searchTerm == ""){
-            return value
-          }else if(value.name.toLowerCase().includes(searchTerm.toLowerCase())){
-            return value
-          }
-        }
-        }).map(data =>{
-          return <p>{pokemonList.value}</p>
-        })}
-      /> */}
-        {/* 여기서  filter와 map사용법을 잘 모르겠다.*/}
+        <form onSubmit={searchTermHandler}>
+          <input
+            type="text"
+            placeholder="name or type"
+            onChange={(e) => {
+              setSearchedPokemonName(e.target.value);
+              {/*여기서 input에 입력하는 값을 실시간(onchange)으로 setsearchedpokemonName에 담아줌 담은걸 리스트페이지에서 불러올것임*/}
+            }}
+          />
+          <button>검색</button>
+        </form>
         <button
           className="login"
           onClick={() => {
-            navigate("/login");
+            navi("/login");
           }}
         >
           {/* user */}
-          {username ? 
-          <div>
-            <p>{username} 님 환영합니다</p>
-            <button onClick={handleLogout}>로그아웃</button>
+          {username ?
+            <div>
+              <p>{username} 님 환영합니다</p>
+              <button onClick={handleLogout}>로그아웃</button>
             </div> : 'Login'}
         </button>
       </header>
@@ -80,3 +77,9 @@ const App = () => {
 };
 
 export default App;
+
+//1. 인피니티 스크롤!!!!!!
+//2. 모달창css, 정보 더 불러오기
+//3. 검색기능 추가
+//4. 로그인시 환영합니다 텍스트 넣고 로그아웃만 버튼으로 만들기
+//5. preventDefault에 e.target.value등을 넣고 string값으로 바꿔보기

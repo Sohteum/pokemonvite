@@ -14,7 +14,7 @@ export const PokemonNameAtom = atom<string>({
 
 
 export const PokemonIdAtom = atom<number>({
-    key: 'PokemonIdAtom',
+    key: 'PokemonIdState',
     default: 0,
 })
 
@@ -29,7 +29,7 @@ export interface IpokemonData {
 
 
 export const IpokemonDataAtom = atom<IpokemonData>({
-    key: 'PokemonIdAtom',
+    key: 'IpokemonDataState',
     default: {
         name: "",
         type: "",
@@ -49,11 +49,13 @@ export const pokemonListAtom = atom({
     default: {}
 })
 
-// export const pokeLoggedInAtom = atom<boolean>({
-//     key: "pokeLoggedInState",
-//     default: false
-// })
+
 export const pokeUserNameAtom = atom<string>({
     key: "pokeUserNameState",
+    default: ''
+})
+
+export const searchedPokeTermAtom = atom<string>({
+    key: "searchedPokeTermState",
     default: ''
 })
