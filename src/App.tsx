@@ -3,7 +3,8 @@ import axios from "axios";
 import PokeList from "./components/PokeList";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { pokeUserNameAtom,  searchedPokeTermAtom } from "./atom/atom";
+import { pokeUserNameAtom, searchedPokeTermAtom } from "./atom/atom";
+import logo from "./assets/logo.png"
 
 const App = () => {
   const [pokemonList, setPokemonList] = useState([]);
@@ -41,20 +42,24 @@ const App = () => {
   return (
     <div className="pokemon-container">
       <header>
-        <h1>Pokemon Evolution</h1>
+        <div>
+          <img className="hover" src={logo} alt="" />
+          <h3 className="invisible">포켓몬도감</h3>
+        </div>
         <form onSubmit={searchTermHandler}>
           <input
+            className="searchInput"
             type="text"
-            placeholder="name or type"
+            placeholder="포켓몬 이름 혹은 특성을 입력해주세요"
             onChange={(e) => {
               setSearchedPokemonName(e.target.value);
-              {/*여기서 input에 입력하는 값을 실시간(onchange)으로 setsearchedpokemonName에 담아줌 담은걸 리스트페이지에서 불러올것임*/}
+              {/*여기서 input에 입력하는 값을 실시간(onchange)으로 setsearchedpokemonName에 담아줌 담은걸 리스트페이지에서 불러올것임*/ }
             }}
           />
-          <button>검색</button>
+          <button className="searchBtn hover"><i className="fa-solid fa-magnifying-glass"></i></button>
         </form>
         <button
-          className="login"
+          className="login hover"
           onClick={() => {
             navi("/login");
           }}
@@ -64,7 +69,7 @@ const App = () => {
             <div>
               <p>{username} 님 환영합니다</p>
               <button onClick={handleLogout}>로그아웃</button>
-            </div> : 'Login'}
+            </div> : <i className="fa-solid fa-user"></i>}
         </button>
       </header>
       <ul className="all-container">

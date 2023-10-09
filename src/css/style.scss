@@ -3,12 +3,21 @@
   margin: 0;
 }
 
+.hover {
+  cursor: pointer;
+}
+
+.invisible {
+  position: absolute;
+  left: 999999px;
+}
+
 .pokemon-container {
-  max-width: 1400px;
-  margin: 0 auto;
-}//마진 0auto를 여기서 줘야함
+} //마진 0auto를 여기서 줘야함
 
 .all-container {
+  max-width: 1400px;
+  margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -39,7 +48,7 @@
   margin: 20px;
   border-radius: 30px;
   box-sizing: border-box;
-padding: 5px;
+  padding: 5px;
   background-color: rgb(0, 174, 255);
   color: aliceblue;
   font-weight: bold;
@@ -49,7 +58,6 @@ padding: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
-
 }
 .name {
   position: absolute;
@@ -60,7 +68,7 @@ padding: 5px;
   height: 30px;
 }
 
-span{
+span {
   position: absolute;
   bottom: 40px;
   display: inline-block;
@@ -70,36 +78,70 @@ span{
 }
 
 header {
-  max-width: 1200px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  min-width: 600px;
   text-align: center;
-  margin: 0 auto;
-  padding: 20px;
-.login {
+  box-sizing: border-box;
+  padding: 15px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  img {
+    margin-left: 20px;
+    width: 200px;
+  }
+  form {
+    position: relative;
+    .searchInput {
+      width: 300px;
+      padding: 10px;
+      background-color: #fff;
+      border: 1px solid rgba(0, 0, 0, 0.3);
+      border-radius: 30px;
+    }
+    .searchBtn {
+      position: absolute;
+      top: 4px;
+      right: 5px;
+      font-size: 1rem;
+      color: #fff;
+      background-color: rgb(58, 91, 255);
+      padding: 5px;
+      border: transparent;
+      border-radius: 50%;
+    }
+  }
+  .login {
     display: block;
-  margin-left: auto;
-  padding: 10px;
-  font-size: 1rem;
-  color: #FFF;
-  border: transparent;
-  background-color: tomato;
-  border-radius: 20px;
-}
+    width: 100px;
+    height: 40px;
+    margin-right: 20px;
+    padding: 10px;
+    font-size: 1rem;
+    color: #fff;
+    border: transparent;
+    background-color: tomato;
+    border-radius: 20px;
+  }
 }
 
-.load-more{
+.load-more {
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
   justify-content: center;
   padding: 10px;
   font-size: 1rem;
-  color: #FFF;
+  color: #fff;
   border: transparent;
   background-color: tomato;
   border-radius: 20px;
-  button{
+  button {
     font-size: 1rem;
-    color: #FFF;
+    color: #fff;
     border: transparent;
     background-color: tomato;
     border-radius: 20px;
