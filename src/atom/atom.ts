@@ -28,6 +28,11 @@ export interface IpokemonData {
     weight: number;
 }
 
+export interface Ipokemonlist {
+    name: string;
+    url: string;
+  }
+
 
 
 export const IpokemonDataAtom = atom<IpokemonData>({
