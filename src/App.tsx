@@ -56,6 +56,7 @@ const App = () => {
               {/*여기서 input에 입력하는 값을 실시간(onchange)으로 setsearchedpokemonName에 담아줌 담은걸 리스트페이지에서 불러올것임*/ }
             }}
           />
+          <div className="searchInputInBar"></div>
           <button className="searchBtn hover"><i className="fa-solid fa-magnifying-glass"></i></button>
         </form>
         <button

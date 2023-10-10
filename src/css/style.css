@@ -14,6 +14,7 @@
 
 .all-container {
   max-width: 1400px;
+  padding-top: 40px;
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
@@ -28,8 +29,9 @@
   list-style: none;
   width: 300px;
   height: 300px;
-  background-color: rgb(255, 242, 227);
   margin: 10px;
+  background-color: rgba(253, 246, 234, 0.664);
+  box-shadow: 2px 2px 5px rgb(211, 211, 211);
 }
 
 .image {
@@ -40,9 +42,11 @@
 .number {
   display: flex;
   justify-content: center;
+  text-decoration: none;
+  list-style: none;
   align-items: center;
   height: 30px;
-  margin: 20px;
+  margin-top: 20px;
   border-radius: 30px;
   box-sizing: border-box;
   padding: 5px;
@@ -85,31 +89,40 @@ header {
   text-align: center;
   box-sizing: border-box;
   padding: 15px;
-  margin-bottom: 40px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 header img {
   margin-left: 20px;
-  width: 200px;
+  width: 180px;
 }
 header form {
   position: relative;
 }
 header form .searchInput {
   width: 300px;
+  height: 20px;
   padding: 10px;
   background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 30px;
+  box-shadow: 2px 2px 7px rgb(204, 204, 204);
+}
+header form .searchInputInBar {
+  position: absolute;
+  top: 5px;
+  right: 40px;
+  width: 1px;
+  height: 32px;
+  background-color: rgba(0, 0, 0, 0.3);
 }
 header form .searchBtn {
   position: absolute;
-  top: 4px;
+  top: 5.3px;
   right: 5px;
   font-size: 1rem;
   color: #fff;
   background-color: rgb(58, 91, 255);
-  padding: 5px;
+  padding: 7px;
   border: transparent;
   border-radius: 50%;
 }

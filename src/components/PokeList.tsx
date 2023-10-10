@@ -47,13 +47,15 @@ const PokeList = ({ url }: { url: string }) => {
         // 여기서 아까 리코일에 담은걸 리스트가 포함하고 있으면 그 값을 보여줌 아니면 빈값 
         // 그럼 왜 검색어를 입력하지않았을때는 리스트를 보여주는가?
         (
-          <Link to={pokemon!.name} onClick={() => setModalOpen(pokemon.id)}>
+          <Link to={pokemon!.name} style={{textDecoration:"none" }} onClick={() => setModalOpen(pokemon.id)}>
             {/* 여기서 온클릭하면 왜 모달페이지가 안열림? */}
             <li className="thumb-container detail-wrapper" >
               <p className="number">#Id: {pokemon!.id}</p>
               <img className="image" src={pokemon!.image} alt={pokemon!.name} />
-              <p>{pokemon!.type}</p>
-              <p className="name">{pokemon!.name}</p>
+              <div className="NameType">
+                <p style={{textDecoration:"none" }}>{pokemon!.type}</p>
+                <p className="name" style={{textDecoration:"none" }}>{pokemon!.name}</p>
+              </div>
             </li>
           </Link>
         )
