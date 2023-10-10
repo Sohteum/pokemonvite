@@ -3,10 +3,21 @@
     top: 50vh;
     left: 50vw;
     transform: translate(-50%,-50%);
-    width: 500px;
-    height: 600px;
-    background-color: rgb(255, 205, 185);
+    width: 700px;
+    height: 400px;
+    color:#000;
     border-radius: 30px;
+    background-color: rgb(255, 234, 198);
+}
+
+.close{
+    display: flex;
+    .modal-name{
+        font-size: 2rem;
+        padding: 20px;
+        font-weight: 600;
+        margin: 0 auto;
+    }
 }
 
 .close >i {
@@ -17,22 +28,29 @@
     color: rgba(0,0,0,0.5);
 }
 
-.id-number {
-
-}
-
-
-.modal-image {
-    padding:0 100px 0 100px;
-    width: 100%;
-    max-width: 250px;
-}
-
-.infomation {
+.modal-info{
+    display: flex;
+    .modal-image {
+        padding: 0 50px 50px 70px;
+        width: 100%;
+        max-width: 250px;
+    }
+    .infomation {
+        margin-top: 20px;
+        padding: 60px;
+        color: rgb(0, 0, 0);
+        font-size: 1.2rem;
+        font-weight: 600;
+        box-sizing: border-box;
+        .modal-type {
     
-    text-align: center;
-    .modal-type {
-        background-color: ;
-
+        }
+    }
+    .info{
+        padding-bottom: 15px;
     }
 }
+
+
+
+

@@ -3,25 +3,17 @@ import { IpokemonData, modalAtom } from "../atom/atom";
 import styled from "styled-components";
 import { useSetRecoilState } from "recoil";
 
-
 const ModalList = styled.div`
   z-index: 9999;
 `;
 
-const PokeDetails = ({
-  pokemon,
-}: {
-  pokemon: IpokemonData | null;
-}) => {
+const PokeDetails = ({ pokemon }: { pokemon: IpokemonData | null }) => {
   const setModalOpen = useSetRecoilState(modalAtom);
   const fnClose = () => {
     setModalOpen(0);
   };
 
-
-
-if(pokemon == null) return <div>pokemon정보가 없습니다</div>;
-
+  if (pokemon == null) return <div>pokemon정보가 없습니다</div>;
 
   return (
     <ModalList id="ModalList">
@@ -29,12 +21,16 @@ if(pokemon == null) return <div>pokemon정보가 없습니다</div>;
         <div className="modalOpen">
           <div className="close" onClick={fnClose}>
             <i className="fa-solid fa-circle-xmark"></i>
+            <p className="modal-name">{pokemon!.name}</p>
           </div>
-          <p className="id-number">#Id: {pokemon!.id}</p>
-          <img className="modal-image" src={pokemon!.image} alt={pokemon!.name} />
-          <div className="infomation">
-            <p className="modal-type">type: {pokemon!.type}</p>
-            <p className="modal-name">name: {pokemon!.name}</p>
+          <div className="modal-info">
+            <img className="modal-image" src={pokemon!.image} alt="" />
+            <div className="infomation">
+              <p className="modal-name info">name: {pokemon!.name}</p>
+              <p className="modal-type info">type: {pokemon!.type}</p>
+              <p className="modal-height info">height: {pokemon!.height}</p>
+              <p className="modal-weight info">weight: {pokemon!.weight}</p>
+            </div>
           </div>
         </div>
       </Link>

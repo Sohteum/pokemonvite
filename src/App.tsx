@@ -47,6 +47,7 @@ const App = () => {
           <h3 className="invisible">포켓몬도감</h3>
         </div>
         <form onSubmit={searchTermHandler}>
+          
           <input
             className="searchInput"
             type="text"
@@ -78,6 +79,7 @@ const App = () => {
           <PokeList key={index} url={pokemon.url} />
         ))}
       </ul>
+      
     </div>
   );
 };
@@ -90,3 +92,4 @@ export default App;
 //4. 로그인시 환영합니다 텍스트 넣고 로그아웃만 버튼으로 만들기
 //5. preventDefault에 e.target.value등을 넣고 string값으로 바꿔보기
 //6. 전역상태관리를 남발하면 안됨. 왜? 타탕한 이유 찾아보기 남발하면 계속 전역적으로 상태가 계속 바뀌니까. 무튼 더 찾아보기
+//7. 타입이 배열로 되어있으니까 맵을 돌려서 호출하기

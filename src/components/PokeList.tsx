@@ -23,8 +23,10 @@ const PokeList = ({ url }: { url: string }) => {
         setPokemon({
           name: response.data.name,
           type: response.data.types[0].type.name,
-          image: response.data.sprites.front_default,
+          image: response.data.sprites.other.home.front_default,
           id: response.data.id,
+          height: response.data.height,
+          weight: response.data.weight,
         });
         setLoading(false);
       })
@@ -50,16 +52,20 @@ const PokeList = ({ url }: { url: string }) => {
           <Link to={pokemon!.name} style={{textDecoration:"none" }} onClick={() => setModalOpen(pokemon.id)}>
             {/* 여기서 온클릭하면 왜 모달페이지가 안열림? */}
             <li className="thumb-container detail-wrapper" >
-              <p className="number">#Id: {pokemon!.id}</p>
+                <div className="top-line">
+                  <p className="number">#Id: {pokemon!.id}</p>
+                  <p className="type" style={{textDecoration:"none" }}>{pokemon!.type}</p>
+                  {/* <p className="type" >{!typeTwo ? pokemon!.typeTwo : ''}</p> */}
+                </div>
               <img className="image" src={pokemon!.image} alt={pokemon!.name} />
               <div className="NameType">
-                <p style={{textDecoration:"none" }}>{pokemon!.type}</p>
                 <p className="name" style={{textDecoration:"none" }}>{pokemon!.name}</p>
               </div>
             </li>
           </Link>
         )
-        : (
+        : 
+        (
           ''
         )
       }

@@ -24,6 +24,8 @@ export interface IpokemonData {
     type: string;
     id: number;
     image: string;
+    height: number;
+    weight: number;
 }
 
 
@@ -34,7 +36,9 @@ export const IpokemonDataAtom = atom<IpokemonData>({
         name: "",
         type: "",
         id: 0,
-        image: ""
+        image: "",
+        height: 0,
+        weight: 0,
     },
 })
 
