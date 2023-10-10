@@ -16,6 +16,7 @@ const PokeDetails = ({ pokemon }: { pokemon: IpokemonData | null }) => {
   if (pokemon == null) return <div>pokemon정보가 없습니다</div>;
 
   return (
+    
     <ModalList id="ModalList">
       <Link to="/">
         <div className="modalOpen">

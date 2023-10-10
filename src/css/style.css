@@ -12,6 +12,21 @@
   left: 999999px;
 }
 
+.typeInfo {
+  padding-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+.typeInfo .type-name {
+  height: 20px;
+  padding: 10px;
+  background-color: rgb(247, 158, 255);
+  border-radius: 30px;
+  margin-right: 5px;
+}
+
 .all-container {
   max-width: 1400px;
   padding-top: 40px;
