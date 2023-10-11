@@ -34,9 +34,7 @@ const PokeTypes = () => {
       {typeList.map((list) => (
         <li
           key={list.name}
-          className={`r-btn ${
-            list.name === type.name ? type.name : "normal"
-          } type`}
+          className='type'
           onClick={typeDataHandler}
         >
           {list.name}

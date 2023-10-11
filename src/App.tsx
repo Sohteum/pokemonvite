@@ -17,9 +17,10 @@ const App = () => {
   const [loading, setLoading] = useState(true);
   const navi = useNavigate();
   const [username, setUsername] = useRecoilState(pokeUserNameAtom);
+  const limit = 100;
 
   useEffect(() => {
-    const apiUrl = "https://pokeapi.co/api/v2/pokemon?limit=1000&offset=0";
+    const apiUrl = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=0`;
     // https://pokeapi.co/api/v2/pokemon/?limit=100000&offset=0
     axios
       .get(apiUrl)
@@ -96,7 +97,7 @@ const App = () => {
         </ul> */}
         <ul className="all-container">
           {pokemonList?.map((pokemon: any, index: number) => (
-            <PokeList key={index} url={pokemon.url} />
+            <PokeList key={index} url={pokemon.url} isLast={index + 1 === limit} />
           ))}
         </ul>
       </div>

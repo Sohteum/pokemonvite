@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { IpokemonData, modalAtom, searchedPokeTermAtom } from "../atom/atom";
 import { useRecoilState } from "recoil";
 
-const PokeList = ({ url }: { url: string }) => {
+const PokeList = ({ url, isLast }: { url: string, isLast: boolean }) => {
   const [pokemon, setPokemon] = useState<IpokemonData>(); // 스테이트에서 타입설정하기 확인
   const [loading, setLoading] = useState<boolean>(true);
   const [modalOpen, setModalOpen] = useRecoilState(modalAtom);
@@ -16,6 +16,7 @@ const PokeList = ({ url }: { url: string }) => {
       .get(url)
       .then((response) => {
         setPokemon({
+          index: response.data.index,
           name: response.data.name,
           type: response.data.types[0].type.name,
           image: response.data.sprites.other.home.front_default,
@@ -23,7 +24,10 @@ const PokeList = ({ url }: { url: string }) => {
           height: response.data.height,
           weight: response.data.weight,
         });
-        setLoading(false);
+
+        if(isLast) {
+          setLoading(false);
+        }
       })
       .catch((error) => {
         console.error("Error fetching Pokemon details:", error);
@@ -31,9 +35,9 @@ const PokeList = ({ url }: { url: string }) => {
       });
   }, []);
 
-  if (loading) return <h3>Loading...</h3>;
+  if (loading && isLast) return <h3>Loading...</h3>;
 
-  if (pokemon == null) return <li>null Data...</li>;
+  if (pokemon == null) return <li></li>;
   //null값이 나올수 있기 때문에 data
 
   return (
