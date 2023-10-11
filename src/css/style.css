@@ -59,7 +59,8 @@
 }
 .thumb-container .image {
   width: 100%;
-  max-width: 200px;
+  max-width: 180px;
+  padding: 10px;
 }
 .thumb-container .number {
   height: 30px;
@@ -179,5 +180,13 @@ header .login {
   color: #fff;
   border: transparent;
   background-color: tomato;
+  border-radius: 20px;
+}
+
+.type {
+  margin-left: 5px;
+  color: #fff;
+  background-color: rgb(255, 206, 46);
+  padding: 5px;
   border-radius: 20px;
 }/*# sourceMappingURL=style.css.map */

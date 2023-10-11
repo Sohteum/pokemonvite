@@ -1,3 +1,16 @@
+.ModalList {
+    position: relative;
+}
+
+.modalBackground {
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 1000%;
+    height: 1000%;
+    background-color: rgba(0,0,0,0.7);
+}
+
 .modalOpen{
     position: fixed;
     top: 50vh;
@@ -7,17 +20,15 @@
     height: 400px;
     color:#000;
     border-radius: 30px;
+    border: 5px solid rgb(255, 234, 198);
+    box-sizing: border-box;
     background-color: rgb(255, 234, 198);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5) inset;
 }
 
 .close{
     display: flex;
-    .modal-name{
-        font-size: 2rem;
-        padding: 20px;
-        font-weight: 600;
-        margin: 0 auto;
-    }
+    
 }
 
 .close >i {
@@ -29,25 +40,51 @@
 }
 
 .modal-info{
+    position: relative;
     display: flex;
     .modal-image {
-        padding: 0 50px 50px 70px;
+        position: absolute;
+        top: -40px;
+        left: 60px;
         width: 100%;
         max-width: 250px;
     }
     .infomation {
-        margin-top: 20px;
-        padding: 60px;
+        position: absolute;
+        top:-10px;
+        left: 50%;
+        padding: 30px;
         color: rgb(0, 0, 0);
         font-size: 1.2rem;
         font-weight: 600;
         box-sizing: border-box;
+        .modal-id {
+            position: absolute;
+            top: 13px;
+            left: 31px;
+            font-size: 1.1rem;
+            color: #747474;
+        }
+        .modal-name{
+            top: 1%;
+            left: 40%;
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
         .modal-type {
-    
+            width: 100px;
+            padding: 3px;
+            color: #FFF;
+            text-align: center;
+            border-radius: 30px;
+            background-color: rgb(25, 150, 108);
+            margin-bottom: 30px;
+
         }
     }
     .info{
-        padding-bottom: 15px;
+        // padding-bottom: 15px;
     }
 }
 

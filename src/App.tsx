@@ -1,22 +1,31 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import PokeList from "./components/PokeList";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { pokeUserNameAtom, searchedPokeTermAtom } from "./atom/atom";
+import {
+  IpokemonData,
+  pokeUserNameAtom,
+  searchedPokeTermAtom,
+} from "./atom/atom";
 import logo from "./assets/logo.png";
 import PokeTypes from "./components/PokeTypes";
 
 const App = () => {
+  const [typeList, setTypeList] = useState<IpokemonData[]>([]);
   const [pokemonList, setPokemonList] = useState([]);
   const [searchedPokemonName, setSearchedPokemonName] =
     useRecoilState(searchedPokeTermAtom);
   const [loading, setLoading] = useState(true);
   const navi = useNavigate();
   const [username, setUsername] = useRecoilState(pokeUserNameAtom);
+  const [type, setType] = useState({
+    name: "normal",
+    url: "https://pokeapi.co/api/v2/type/1/",
+  });
 
   useEffect(() => {
-    const apiUrl = "https://pokeapi.co/api/v2/pokemon";
+    const apiUrl = "https://pokeapi.co/api/v2/pokemon?limit=1000&offset=0";
     // https://pokeapi.co/api/v2/pokemon/?limit=100000&offset=0
     axios
       .get(apiUrl)
@@ -83,7 +92,14 @@ const App = () => {
             )}
           </button>
         </header>
-        <PokeTypes />
+        <PokeTypes  />
+        {/* <ul className="typeInfo hover" style={{ listStyle: "none" }}>
+          {typeList.map((list) => (
+            <li key={list.name} className="type" onClick={typeDataHandler}>
+              {list.name}
+            </li>
+          ))}
+        </ul> */}
         <ul className="all-container">
           {pokemonList?.map((pokemon: any, index: number) => (
             <PokeList key={index} url={pokemon.url} />
@@ -97,8 +113,8 @@ const App = () => {
 export default App;
 
 //1. 인피니티 스크롤!!!!!!
-//2. 모달창css, 정보 더 불러오기
-//3. 검색기능 추가
+
+
 //4. 로그인시 환영합니다 텍스트 넣고 로그아웃만 버튼으로 만들기
 //5. preventDefault에 e.target.value등을 넣고 string값으로 바꿔보기
 //6. 전역상태관리를 남발하면 안됨. 왜? 타탕한 이유 찾아보기 남발하면 계속 전역적으로 상태가 계속 바뀌니까. 무튼 더 찾아보기
