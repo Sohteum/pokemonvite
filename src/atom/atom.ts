@@ -39,6 +39,7 @@ export interface Ipokemonlist {
 export const IpokemonDataAtom = atom<IpokemonData>({
     key: 'IpokemonDataState',
     default: {
+        index:0,
         name: "",
         type: "",
         id: 0,

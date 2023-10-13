@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import PokeList from "./components/PokeList";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import {
-  pokeUserNameAtom,
-  searchedPokeTermAtom,
-} from "./atom/atom";
+import { pokeUserNameAtom, searchedPokeTermAtom } from "./atom/atom";
 import logo from "./assets/logo.png";
 import PokeTypes from "./components/PokeTypes";
 
@@ -17,7 +14,8 @@ const App = () => {
   const [loading, setLoading] = useState(true);
   const navi = useNavigate();
   const [username, setUsername] = useRecoilState(pokeUserNameAtom);
-  const limit = 100;
+  const limit = 151;
+  const navigate = useNavigate();
 
   useEffect(() => {
     const apiUrl = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=0`;
@@ -50,7 +48,12 @@ const App = () => {
       <div className="pokemon-container">
         <header>
           <div>
-            <img className="hover" src={logo} alt="" />
+            <img
+              className="hover"
+              src={logo}
+              alt=""
+              onClick={() => navigate("/")}
+            />
             <h3 className="invisible">포켓몬도감</h3>
           </div>
           <form onSubmit={searchTermHandler}>
@@ -87,17 +90,15 @@ const App = () => {
             )}
           </button>
         </header>
-        <PokeTypes  />
-        {/* <ul className="typeInfo hover" style={{ listStyle: "none" }}>
-          {typeList.map((list) => (
-            <li key={list.name} className="type" onClick={typeDataHandler}>
-              {list.name}
-            </li>
-          ))}
-        </ul> */}
+        <PokeTypes />
+    
         <ul className="all-container">
           {pokemonList?.map((pokemon: any, index: number) => (
-            <PokeList key={index} url={pokemon.url} isLast={index + 1 === limit} />
+            <PokeList
+              key={index}
+              url={pokemon.url}
+              isLast={index + 1 === limit}
+            />
           ))}
         </ul>
       </div>
@@ -109,10 +110,9 @@ export default App;
 
 //1. 인피니티 스크롤!!!!!!
 //2. 클릭하면 타입별로 나오도록
-//3. 로딩 한번만 나오게 하기
-//4. 타입이 배열로 되어있으니까 맵을 돌려서 호출하기
 
 //4. 로그인시 환영합니다 텍스트 넣고 로그아웃만 버튼으로 만들기
 //5. preventDefault에 e.target.value등을 넣고 string값으로 바꿔보기
 //6. 전역상태관리를 남발하면 안됨. 왜? 타탕한 이유 찾아보기 남발하면 계속 전역적으로 상태가 계속 바뀌니까. 무튼 더 찾아보기
-
+//3. 로딩 한번만 나오게 하기
+//4. 타입이 배열로 되어있으니까 맵을 돌려서 호출하기

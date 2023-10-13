@@ -3,11 +3,33 @@ import React, { useEffect, useState } from "react";
 import { IpokemonData } from "../atom/atom";
 
 const PokeTypes = () => {
+  // const filterOptions = [
+  //   { name: "normal", value: "normal" },
+  //   { name: "fighting", value: "fighting" },
+  //   { name: "flying", value: "flying" },
+  //   { name: "poison", value: "poison" },
+  //   { name: "ground", value: "ground" },
+  //   { name: "rock", value: "rock" },
+  //   { name: "bug", value: "bug" },
+  //   { name: "ghost", value: "ghost" },
+  //   { name: "steel", value: "steel" },
+  //   { name: "fire", value: "fire" },
+  //   { name: "water", value: "water" },
+  //   { name: "grass", value: "grass" },
+  //   { name: "electric", value: "electric" },
+  //   { name: "psychic", value: "psychic" },
+  //   { name: "ice", value: "ice" },
+  //   { name: "dragon", value: "dragon" },
+  //   { name: "dark", value: "dark" },
+  //   { name: "fairy", value: "fairy" },
+  //   { name: "unknown", value: "unknown" },
+  //   { name: "shadow", value: "shadow" },
+  // ];
+
+  const [pokemon, setPokemon] = useState<IpokemonData>(); // 스테이트에서 타입설정하기 확인
   const [typeList, setTypeList] = useState<IpokemonData[]>([]);
-  const [type, setType] = useState({
-    name: "normal",
-    url: "https://pokeapi.co/api/v2/type/1/",
-  });
+  const [isClicked, setIsClicked] = useState();
+  const [filterOption, setFilterOption] = useState("all");
 
   useEffect(() => {
     const apiUrl = "https://pokeapi.co/api/v2/type";
@@ -21,22 +43,21 @@ const PokeTypes = () => {
       });
   }, []);
 
+  // const newFilterOptions = filterOptions.name.map((elm) => {
+  //   if (elm == pokemon.type) {
+  //     //해당타입포켓몬이 출력된다
+  //   }
+  //   return;
+  // });
 
-  //온클릭을 했는데 그게 리스트에 있는것과 일치한다면 그 목록을 불러오기
-  const typeDataHandler = () => {
-    {typeList.filter(typeList) ? typeList.type : "null"}
-    
-  };
-  console.log(typeList.type);
+
+console.log(pokemon.type.filter((elm)=> elm.name ==='fire'));
+
 
   return (
     <ul className="typeInfo hover" style={{ listStyle: "none" }}>
       {typeList.map((list) => (
-        <li
-          key={list.name}
-          className='type'
-          onClick={typeDataHandler}
-        >
+        <li key={list.name} className="type">
           {list.name}
         </li>
       ))}

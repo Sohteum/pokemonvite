@@ -35,9 +35,9 @@ const PokeList = ({ url, isLast }: { url: string, isLast: boolean }) => {
       });
   }, []);
 
-  if (loading && isLast) return <h3>Loading...</h3>;
+  if (loading && isLast) return <h1>Loading...</h1>;
 
-  if (pokemon == null) return <li></li>;
+  if (pokemon == null) return <p className='thumb-container'>포켓몬 데이터가 없습니다</p>;
   //null값이 나올수 있기 때문에 data
 
   return (
