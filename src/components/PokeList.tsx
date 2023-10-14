@@ -18,7 +18,7 @@ const PokeList = ({ url, isLast }: { url: string, isLast: boolean }) => {
         setPokemon({
           index: response.data.index,
           name: response.data.name,
-          type: response.data.types[0].type.name,
+          type: response.data.types[0].type.name, //맵을 돌릴수있나아
           image: response.data.sprites.other.home.front_default,
           id: response.data.id,
           height: response.data.height,

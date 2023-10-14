@@ -1,3 +1,4 @@
+import { IpokemonData } from './../types/interface';
 import { atom } from "recoil";
 
 export const LoginStateAtom = atom({
@@ -17,24 +18,6 @@ export const PokemonIdAtom = atom<number>({
     key: 'PokemonIdState',
     default: 0,
 })
-
-
-export interface IpokemonData {
-    index: number;
-    name: string;
-    type: string;
-    id: number;
-    image: string;
-    height: number;
-    weight: number;
-}
-
-export interface Ipokemonlist {
-    name: string;
-    url: string;
-  }
-
-
 
 export const IpokemonDataAtom = atom<IpokemonData>({
     key: 'IpokemonDataState',

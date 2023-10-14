@@ -9,13 +9,34 @@ import PokeTypes from "./components/PokeTypes";
 
 const App = () => {
   const [pokemonList, setPokemonList] = useState([]);
-  const [searchedPokemonName, setSearchedPokemonName] =
-    useRecoilState(searchedPokeTermAtom);
+  const [searchedPokemonName, setSearchedPokemonName] = useRecoilState(searchedPokeTermAtom);
   const [loading, setLoading] = useState(true);
-  const navi = useNavigate();
   const [username, setUsername] = useRecoilState(pokeUserNameAtom);
-  const limit = 151;
+  const [currentPageUrl, setCurrentPageUrl] = useState('https://pokeapi.co/api/v2/pokemon')
+  const [nextPageUrl, setNextPageUrl] = useState()
+  const [prevPageUrl, setPrevPageUrl] = useState()
   const navigate = useNavigate();
+  const navi = useNavigate();
+  const limit = 151;
+
+
+  // useEffect(() => {
+  //   setLoading(true)
+  //   axios.get(currentPageUrl, {
+  //     cancelToken: new axios.CancelToken(c => cancel = c)
+  //   }).then(res => {
+  //     setLoading(false)
+  //     setNextPageUrl(res.data.next)
+  //     setPrevPageUrl(res.data.previous)
+  //     setPokemonList(res.data.results.map(p => p.name))
+  //   })
+
+  //   return () => {calcel()
+  //   }
+  // }, [currentPageUrl])
+
+  // if (loading) return "Loading..."
+
 
   useEffect(() => {
     const apiUrl = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=0`;
@@ -91,15 +112,17 @@ const App = () => {
           </button>
         </header>
         <PokeTypes />
-    
+
         <ul className="all-container">
           {pokemonList?.map((pokemon: any, index: number) => (
             <PokeList
               key={index}
               url={pokemon.url}
               isLast={index + 1 === limit}
+
             />
           ))}
+
         </ul>
       </div>
     </>
