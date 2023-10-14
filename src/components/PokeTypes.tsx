@@ -51,7 +51,7 @@ const PokeTypes = () => {
   // });
 
 
-console.log(pokemon.type.filter((elm)=> elm.name ==='fire'));
+// console.log(pokemon.type.filter((elm)=> elm.name ==='fire'));
 
 
   return (
