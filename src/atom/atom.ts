@@ -40,7 +40,7 @@ export const modalAtom = atom<number>({
 
 export const pokemonListAtom = atom({
     key: "pokemonListState",
-    default: {}
+    default: []
 })
 
 

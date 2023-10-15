@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import PokeDetails from "./PokeDetails";
 import { Link } from "react-router-dom";
-import { IpokemonData, modalAtom, searchedPokeTermAtom } from "../atom/atom";
+import { IpokemonData, modalAtom, pokemonListAtom, searchedPokeTermAtom } from "../atom/atom";
 import { useRecoilState } from "recoil";
 
 const PokeList = ({ url, isLast }: { url: string, isLast: boolean }) => {
@@ -33,7 +33,7 @@ const PokeList = ({ url, isLast }: { url: string, isLast: boolean }) => {
         console.error("Error fetching Pokemon details:", error);
         setLoading(false);
       });
-  }, []);
+  }, [url]);
 
   if (loading && isLast) return <h1>Loading...</h1>;
 

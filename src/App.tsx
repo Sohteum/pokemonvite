@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import PokeList from "./components/PokeList";
 import { useNavigate } from "react-router-dom";
@@ -13,45 +13,30 @@ const App = () => {
   const [loading, setLoading] = useState(true);
   const [username, setUsername] = useRecoilState(pokeUserNameAtom);
   const [currentPageUrl, setCurrentPageUrl] = useState('https://pokeapi.co/api/v2/pokemon')
-  const [nextPageUrl, setNextPageUrl] = useState()
-  const [prevPageUrl, setPrevPageUrl] = useState()
+  const [nextPageUrl, setNextPageUrl] = useState('')
+  const [prevPageUrl, setPrevPageUrl] = useState('')
   const navigate = useNavigate();
   const navi = useNavigate();
-  const limit = 151;
-
-
-  // useEffect(() => {
-  //   setLoading(true)
-  //   axios.get(currentPageUrl, {
-  //     cancelToken: new axios.CancelToken(c => cancel = c)
-  //   }).then(res => {
-  //     setLoading(false)
-  //     setNextPageUrl(res.data.next)
-  //     setPrevPageUrl(res.data.previous)
-  //     setPokemonList(res.data.results.map(p => p.name))
-  //   })
-
-  //   return () => {calcel()
-  //   }
-  // }, [currentPageUrl])
-
-  // if (loading) return "Loading..."
-
+  const target = useRef<HTMLDivElement>(null); // 인피니티 스크롤 용도 (observer)
 
   useEffect(() => {
-    const apiUrl = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=0`;
-    // https://pokeapi.co/api/v2/pokemon/?limit=100000&offset=0
-    axios
-      .get(apiUrl)
-      .then((response) => {
-        setPokemonList(response.data.results);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching Pokemon list:", error);
-        setLoading(false);
-      });
-  }, []);
+   pokemonListHandler(currentPageUrl);
+  }, [currentPageUrl]);
+
+
+  const pokemonListHandler = (url: string) => {
+    if(url === '') return;
+
+    axios.get(url).then((response) => {
+      setPokemonList(response.data.results)
+      setNextPageUrl(response.data.next)
+      setPrevPageUrl(response.data.previous)
+      setLoading(false);
+    }).catch((error) => {
+      console.error("Error fetching Pokemon list:", error);
+      setLoading(false);
+    });
+  };
 
   const searchTermHandler = (e: any) => {
     e.preventDefault();
@@ -66,7 +51,7 @@ const App = () => {
 
   return (
     <>
-      <div className="pokemon-container">
+      <div  className="pokemon-container">
         <header>
           <div>
             <img
@@ -111,6 +96,8 @@ const App = () => {
             )}
           </button>
         </header>
+        <button className="prevBtn hover" onClick={() => { setCurrentPageUrl(prevPageUrl ?? '') }}>Previous</button>
+        <button className="nextBtn hover" onClick={() => { setCurrentPageUrl(nextPageUrl ?? '') }}>Next</button>
         <PokeTypes />
 
         <ul className="all-container">
@@ -118,13 +105,14 @@ const App = () => {
             <PokeList
               key={index}
               url={pokemon.url}
-              isLast={index + 1 === limit}
+            isLast={pokemonList.length - 1 == index}
 
             />
           ))}
 
         </ul>
       </div>
+      <div ref={target}></div>
     </>
   );
 };
