@@ -3,6 +3,10 @@
   margin: 0;
 }
 
+body {
+  overflow-x: hidden;
+}
+
 .hover {
   cursor: pointer;
 }
@@ -13,6 +17,7 @@
 }
 
 .pokemon-container {
+  position: relative;
 } //마진 0auto를 여기서 줘야함
 
 .typeInfo {
@@ -200,9 +205,19 @@ header {
   border-radius: 20px;
 }
 
-.prevBtn,
-.nextBtn {
-  width: 200px;
-  height: 50px;
-  background-color: #ffcc5f;
+.pagingBtn {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: center;
+  .prevBtn,
+  .nextBtn {
+    display :inline-block;
+    justify-content: center;
+    width: 200px;
+    height: 50px;
+    background-color: #ffcc5f;
+    border-radius: 30px;
+    margin-right: 10px;
+    border: transparent;
+  }
 }

@@ -15,17 +15,16 @@ const App = () => {
   const [currentPageUrl, setCurrentPageUrl] = useState('https://pokeapi.co/api/v2/pokemon')
   const [nextPageUrl, setNextPageUrl] = useState('')
   const [prevPageUrl, setPrevPageUrl] = useState('')
-  const navigate = useNavigate();
   const navi = useNavigate();
   const target = useRef<HTMLDivElement>(null); // 인피니티 스크롤 용도 (observer)
 
   useEffect(() => {
-   pokemonListHandler(currentPageUrl);
+    pokemonListHandler(currentPageUrl);
   }, [currentPageUrl]);
 
 
   const pokemonListHandler = (url: string) => {
-    if(url === '') return;
+    if (url === '') return;
 
     axios.get(url).then((response) => {
       setPokemonList(response.data.results)
@@ -51,16 +50,16 @@ const App = () => {
 
   return (
     <>
-      <div  className="pokemon-container">
+      <div className="pokemon-container">
         <header>
           <div>
             <img
               className="hover"
               src={logo}
               alt=""
-              onClick={() => navigate("/")}
+              onClick={() => navi("/")}
             />
-            <h3 className="invisible">포켓몬도감</h3>
+            {/* <h3 className="invisible">포켓몬도감</h3> */}
           </div>
           <form onSubmit={searchTermHandler}>
             <input
@@ -96,8 +95,6 @@ const App = () => {
             )}
           </button>
         </header>
-        <button className="prevBtn hover" onClick={() => { setCurrentPageUrl(prevPageUrl ?? '') }}>Previous</button>
-        <button className="nextBtn hover" onClick={() => { setCurrentPageUrl(nextPageUrl ?? '') }}>Next</button>
         <PokeTypes />
 
         <ul className="all-container">
@@ -105,12 +102,16 @@ const App = () => {
             <PokeList
               key={index}
               url={pokemon.url}
-            isLast={pokemonList.length - 1 == index}
+              isLast={pokemonList.length - 1 == index}
 
             />
           ))}
 
         </ul>
+      </div>
+      <div className="pagingBtn">
+        <button className="prevBtn hover" onClick={() => { setCurrentPageUrl(prevPageUrl ?? '') }}>Previous</button>
+        <button className="nextBtn hover" onClick={() => { setCurrentPageUrl(nextPageUrl ?? '') }}>Next</button>
       </div>
       <div ref={target}></div>
     </>
@@ -121,9 +122,8 @@ export default App;
 
 //1. 인피니티 스크롤!!!!!!
 //2. 클릭하면 타입별로 나오도록
-
+// 왜 넥스트랑 프리비어스 클릭하면 렌더링 새로 안됨?포켓몬 로고 클릭해도 재렌더링이 안됨.
 //4. 로그인시 환영합니다 텍스트 넣고 로그아웃만 버튼으로 만들기
 //5. preventDefault에 e.target.value등을 넣고 string값으로 바꿔보기
 //6. 전역상태관리를 남발하면 안됨. 왜? 타탕한 이유 찾아보기 남발하면 계속 전역적으로 상태가 계속 바뀌니까. 무튼 더 찾아보기
-//3. 로딩 한번만 나오게 하기
 //4. 타입이 배열로 되어있으니까 맵을 돌려서 호출하기
