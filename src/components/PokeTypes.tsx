@@ -28,8 +28,6 @@ const PokeTypes = () => {
 
   const [pokemon, setPokemon] = useState<IpokemonData>(); // 스테이트에서 타입설정하기 확인
   const [typeList, setTypeList] = useState<IpokemonData[]>([]);
-  const [isClicked, setIsClicked] = useState();
-  const [filterOption, setFilterOption] = useState("all");
 
   useEffect(() => {
     const apiUrl = "https://pokeapi.co/api/v2/type";

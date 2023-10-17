@@ -31,6 +31,7 @@ const App = () => {
       setNextPageUrl(response.data.next)
       setPrevPageUrl(response.data.previous)
       setLoading(false);
+      window.scrollTo(0, 0);//페이지 이동 후 최상단으로 이동
     }).catch((error) => {
       console.error("Error fetching Pokemon list:", error);
       setLoading(false);
@@ -44,7 +45,13 @@ const App = () => {
   const handleLogout = () => {
     localStorage.removeItem("username");
     setUsername("");
+    // setPrevPageUrl()//가장 최신 페이지로 이동
   };
+
+  const pageRerender =()=>{
+    navi("/") 
+    window.scrollTo(0, 0);
+  }
 
   if (loading) return <div style={{ listStyle: "none" }}>Loading...</div>;
 
@@ -57,7 +64,7 @@ const App = () => {
               className="hover"
               src={logo}
               alt=""
-              onClick={() => navi("/")}
+              onClick={pageRerender}
             />
             {/* <h3 className="invisible">포켓몬도감</h3> */}
           </div>
@@ -95,19 +102,21 @@ const App = () => {
             )}
           </button>
         </header>
-        <PokeTypes />
-
-        <ul className="all-container">
-          {pokemonList?.map((pokemon: any, index: number) => (
-            <PokeList
-              key={index}
-              url={pokemon.url}
-              isLast={pokemonList.length - 1 == index}
-
-            />
-          ))}
-
-        </ul>
+        <div className="poke-container">
+          <PokeTypes />
+  
+          <ul className="all-container">
+            {pokemonList?.map((pokemon: any, index: number) => (
+              <PokeList
+                key={index}
+                url={pokemon.url}
+                isLast={pokemonList.length - 1 == index}
+  
+              />
+            ))}
+  
+          </ul>
+        </div>
       </div>
       <div className="pagingBtn">
         <button className="prevBtn hover" onClick={() => { setCurrentPageUrl(prevPageUrl ?? '') }}>Previous</button>

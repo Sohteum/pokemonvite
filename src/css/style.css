@@ -5,6 +5,7 @@
 
 body {
   overflow-x: hidden;
+  padding-top: 100px;
 }
 
 .hover {
@@ -112,16 +113,22 @@ span {
 }
 
 header {
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100vw;
+  height: 100px;
   min-width: 600px;
   text-align: center;
   box-sizing: border-box;
   padding: 15px;
+  margin-bottom: 100px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: #f3f3f3;
+  z-index: 99;
 }
 header img {
   margin-left: 20px;
