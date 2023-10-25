@@ -85,6 +85,7 @@ const App = () => {
               <i className="fa-solid fa-magnifying-glass"></i>
             </button>
           </form>
+          {/* <PokeTypes/> */}
           <button
             className="login hover"
             onClick={() => {

@@ -3,28 +3,28 @@ import React, { useEffect, useState } from "react";
 import { IpokemonData } from "../atom/atom";
 
 const PokeTypes = () => {
-  // const filterOptions = [
-  //   { name: "normal", value: "normal" },
-  //   { name: "fighting", value: "fighting" },
-  //   { name: "flying", value: "flying" },
-  //   { name: "poison", value: "poison" },
-  //   { name: "ground", value: "ground" },
-  //   { name: "rock", value: "rock" },
-  //   { name: "bug", value: "bug" },
-  //   { name: "ghost", value: "ghost" },
-  //   { name: "steel", value: "steel" },
-  //   { name: "fire", value: "fire" },
-  //   { name: "water", value: "water" },
-  //   { name: "grass", value: "grass" },
-  //   { name: "electric", value: "electric" },
-  //   { name: "psychic", value: "psychic" },
-  //   { name: "ice", value: "ice" },
-  //   { name: "dragon", value: "dragon" },
-  //   { name: "dark", value: "dark" },
-  //   { name: "fairy", value: "fairy" },
-  //   { name: "unknown", value: "unknown" },
-  //   { name: "shadow", value: "shadow" },
-  // ];
+  const filterOptions = [
+    {key:'1', name: "normal", value: "normal" },
+    {key:'2', name: "fighting", value: "fighting" },
+    {key:'3', name: "flying", value: "flying" },
+    {key:'4', name: "poison", value: "poison" },
+    {key:'5', name: "ground", value: "ground" },
+    {key:'6', name: "rock", value: "rock" },
+    {key:'7', name: "bug", value: "bug" },
+    {key:'8', name: "ghost", value: "ghost" },
+    {key:'9', name: "steel", value: "steel" },
+    {key:'10', name: "fire", value: "fire" },
+    {key:'11', name: "water", value: "water" },
+    {key:'12', name: "grass", value: "grass" },
+    {key:'13', name: "electric", value: "electric" },
+    {key:'14', name: "psychic", value: "psychic" },
+    {key:'15', name: "ice", value: "ice" },
+    {key:'16', name: "dragon", value: "dragon" },
+    {key:'17', name: "dark", value: "dark" },
+    {key:'18', name: "fairy", value: "fairy" },
+    {key:'19', name: "unknown", value: "unknown" },
+    {key:'20', name: "shadow", value: "shadow" },
+  ];
 
   const [pokemon, setPokemon] = useState<IpokemonData>(); // 스테이트에서 타입설정하기 확인
   const [typeList, setTypeList] = useState<IpokemonData[]>([]);
@@ -52,14 +52,23 @@ const PokeTypes = () => {
 // console.log(pokemon.type.filter((elm)=> elm.name ==='fire'));
 
 
+const onChangeHandler =(e)=>{
+	setTypeList(e.currentTarget.value)
+}
+
   return (
-    <ul className="typeInfo hover" style={{ listStyle: "none" }}>
-      {typeList.map((list) => (
-        <li key={list.name} className="type">
-          {list.name}
-        </li>
-      ))}
-    </ul>
+    // <ul className="typeInfo hover" style={{ listStyle: "none" }}>
+    //   {typeList.map((list) => (
+    //     <li key={list.name} className="type">
+    //       {list.name}
+    //     </li>
+    //   ))}
+    // </ul>
+    <select onChange={onChangeHandler} value={typeList}>
+		{filterOptions.map((item, index)=>(
+			<option key={item.key} value={item.key}>{item.value}</option>
+		))}
+    </select>
   );
 };
 
