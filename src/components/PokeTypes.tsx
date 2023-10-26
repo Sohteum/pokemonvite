@@ -41,12 +41,12 @@ const PokeTypes = () => {
       });
   }, []);
 
-  // const newFilterOptions = filterOptions.name.map((elm) => {
-  //   if (elm == pokemon.type) {
-  //     //해당타입포켓몬이 출력된다
-  //   }
-  //   return;
-  // });
+  const newFilterOptions = filterOptions.name.map((elm) => {
+    if (elm == pokemon.type) {
+      //해당타입포켓몬이 출력된다
+    }
+    return;
+  });
 
 
 // console.log(pokemon.type.filter((elm)=> elm.name ==='fire'));
@@ -54,6 +54,7 @@ const PokeTypes = () => {
 
 const onChangeHandler =(e)=>{
 	setTypeList(e.currentTarget.value)
+  if
 }
 
   return (
