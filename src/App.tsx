@@ -3,12 +3,12 @@ import axios from "axios";
 import PokeList from "./components/PokeList";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { pokeUserNameAtom, searchedPokeTermAtom } from "./atom/atom";
+import { pokeUserNameAtom, pokemonListAtom, searchedPokeTermAtom } from "./atom/atom";
 import logo from "./assets/logo.png";
 import PokeTypes from "./components/PokeTypes";
 
 const App = () => {
-  const [pokemonList, setPokemonList] = useState([]);
+  const [pokemonList, setPokemonList] = useRecoilState(pokemonListAtom);
   const [searchedPokemonName, setSearchedPokemonName] = useRecoilState(searchedPokeTermAtom);
   const [loading, setLoading] = useState(true);
   const [username, setUsername] = useRecoilState(pokeUserNameAtom);
@@ -20,6 +20,7 @@ const App = () => {
 
   useEffect(() => {
     pokemonListHandler(currentPageUrl);
+    console.log(pokemonList);
   }, [currentPageUrl]);
 
 
@@ -28,6 +29,7 @@ const App = () => {
 
     axios.get(url).then((response) => {
       setPokemonList(response.data.results)
+      
       setNextPageUrl(response.data.next)
       setPrevPageUrl(response.data.previous)
       setLoading(false);
@@ -107,7 +109,8 @@ const App = () => {
           <PokeTypes />
   
           <ul className="all-container">
-            {pokemonList?.map((pokemon: any, index: number) => (
+            {pokemonList?.map((pokemon: object, index: number) => (
+            
               <PokeList
                 key={index}
                 url={pokemon.url}

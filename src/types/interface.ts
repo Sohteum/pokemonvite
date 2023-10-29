@@ -1,5 +1,4 @@
 export interface IpokemonData {
-  index: number;
   name: string;
   type: string;
   id: number;

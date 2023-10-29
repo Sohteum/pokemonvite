@@ -15,24 +15,31 @@ const PokeList = ({ url, isLast }: { url: string, isLast: boolean }) => {
     axios
       .get(url)
       .then((response) => {
-        setPokemon({
-          index: response.data.index,
-          name: response.data.name,
-          type: response.data.types[0].type.name, //맵을 돌릴수있나아
-          image: response.data.sprites.other["official-artwork"]["front_default"],
-          id: response.data.id,
-          height: response.data.height,
-          weight: response.data.weight,
-        });
+        const id = response.data.id;
+        
+        let name 
+        axios.get(`https://pokeapi.co/api/v2/pokemon-species/${id}/`).then((res) => {
+          name = res.data.names[2].name;
 
-        if(isLast) {
-          setLoading(false);
-        }
+          setPokemon({
+            id,
+            name: name,
+            type: response.data.types[0].type.name, //맵을 돌릴수있나아
+            image: response.data.sprites.other["official-artwork"]["front_default"],
+            height: response.data.height,
+            weight: response.data.weight,
+          });
+          if(isLast) {
+            setLoading(false);
+          }
+        });
       })
       .catch((error) => {
         console.error("Error fetching Pokemon details:", error);
         setLoading(false);
       });
+      
+
   }, [url]);
 
   if (loading && isLast) return <h1>Loading...</h1>;

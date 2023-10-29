@@ -22,7 +22,6 @@ export const PokemonIdAtom = atom<number>({
 export const IpokemonDataAtom = atom<IpokemonData>({
     key: 'IpokemonDataState',
     default: {
-        index:0,
         name: "",
         type: "",
         id: 0,
@@ -38,10 +37,6 @@ export const modalAtom = atom<number>({
     default: 0
 })
 
-export const pokemonListAtom = atom({
-    key: "pokemonListState",
-    default: []
-})
 
 
 export const pokeUserNameAtom = atom<string>({
@@ -52,4 +47,9 @@ export const pokeUserNameAtom = atom<string>({
 export const searchedPokeTermAtom = atom<string>({
     key: "searchedPokeTermState",
     default: ''
+})
+
+export const pokemonListAtom = atom<Array<object>>({
+key : "pokemonListState",
+default:[],
 })
