@@ -16,20 +16,22 @@ const PokeList = ({ url, isLast }: { url: string, isLast: boolean }) => {
       .get(url)
       .then((response) => {
         const id = response.data.id;
-        
-        let name 
+
+        let name
         axios.get(`https://pokeapi.co/api/v2/pokemon-species/${id}/`).then((res) => {
           name = res.data.names[2].name;
 
+          // const type = response.data.types.map((index: any) => (newvalue)).type.name;
           setPokemon({
             id,
             name: name,
+            // type,
             type: response.data.types[0].type.name, //맵을 돌릴수있나아
             image: response.data.sprites.other["official-artwork"]["front_default"],
             height: response.data.height,
             weight: response.data.weight,
           });
-          if(isLast) {
+          if (isLast) {
             setLoading(false);
           }
         });
@@ -38,7 +40,7 @@ const PokeList = ({ url, isLast }: { url: string, isLast: boolean }) => {
         console.error("Error fetching Pokemon details:", error);
         setLoading(false);
       });
-      
+
 
   }, [url]);
 
@@ -50,7 +52,7 @@ const PokeList = ({ url, isLast }: { url: string, isLast: boolean }) => {
   return (
     <>
       {pokemon.name.includes(searchedPokemonName) ||
-      pokemon.type.includes(searchedPokemonName) ? (
+        pokemon.type.includes(searchedPokemonName) ? (
         // 여기서 아까 리코일에 담은걸 리스트가 포함하고 있으면 그 값을 보여줌 아니면 빈값
         // 그럼 왜 검색어를 입력하지않았을때는 리스트를 보여주는가?
         <Link

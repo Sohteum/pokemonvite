@@ -20,7 +20,6 @@ const App = () => {
 
   useEffect(() => {
     pokemonListHandler(currentPageUrl);
-    console.log(pokemonList);
   }, [currentPageUrl]);
 
 

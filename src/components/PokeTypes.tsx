@@ -27,7 +27,7 @@ const PokeTypes = () => {
   //   {key:'20', name: "shadow", value: "shadow" },
   // ];
 
-  const [pokemon, setPokemon] = useState<IpokemonData>(); // 스테이트에서 타입설정하기 확인
+  const [pokemon, setPokemon] = useState<IpokemonData>(); 
   const [typeList, setTypeList] = useState<IpokemonData[]>([]);
   const apiUrl = "https://pokeapi.co/api/v2/type";
   const [pokemonList, setPokemonList] = useRecoilState(pokemonListAtom);
