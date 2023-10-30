@@ -21,7 +21,7 @@ const PokeList = ({ url, isLast }: { url: string, isLast: boolean }) => {
         axios.get(`https://pokeapi.co/api/v2/pokemon-species/${id}/`).then((res) => {
           name = res.data.names[2].name;
 
-          // const type = response.data.types.map((index: any) => (newvalue)).type.name;
+          // const type = response.data.types.map([[1],[2]]).type.name;
           setPokemon({
             id,
             name: name,
