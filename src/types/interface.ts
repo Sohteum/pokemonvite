@@ -1,6 +1,6 @@
 export interface IpokemonData {
   name: string;
-  type: string;
+  type: Array<string>;
   id: number;
   image: string;
   height: number;
