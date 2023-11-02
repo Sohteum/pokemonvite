@@ -17,15 +17,15 @@ const PokeList = ({ url, isLast }: { url: string, isLast: boolean }) => {
       .then((response) => {
         const id = response.data.id;
 
+        //const types = response.data.types.map((type:any)=>(type.type.name));
         let name
         axios.get(`https://pokeapi.co/api/v2/pokemon-species/${id}/`).then((res) => {
           name = res.data.names[2].name;
 
-          const type = response.data.types.map((types:any)=>{types}).type.name;
           setPokemon({
             id,
             name: name,
-            type,
+            types:response.data.types,
             // type: response.data.types[0].type.name, //맵을 돌릴수있나아
             image: response.data.sprites.other["official-artwork"]["front_default"],
             height: response.data.height,
@@ -43,6 +43,7 @@ const PokeList = ({ url, isLast }: { url: string, isLast: boolean }) => {
 
 
   }, [url]);
+  console.log(pokemon)
 
   if (loading && isLast) return <h1>Loading...</h1>;
 
@@ -68,7 +69,8 @@ const PokeList = ({ url, isLast }: { url: string, isLast: boolean }) => {
             <div className="top-line">
               <p className="number">No.{pokemon!.id}</p>
               <p className="type" style={{ textDecoration: "none" }}>
-                {pokemon!.type}
+                {/* {pokemon!.type} */}
+                <div>{pokemon!.types.map((type:any)=>(type.type.name))}</div>
               </p>
               {/* <p className="type" >{!typeTwo ? pokemon!.typeTwo : ''}</p> */}
             </div>
