@@ -68,10 +68,10 @@ const PokeList = ({ url, isLast }: { url: string, isLast: boolean }) => {
           >
             <div className="top-line">
               <p className="number">No.{pokemon!.id}</p>
-              <p className="type" style={{ textDecoration: "none" }}>
+              <ul className="type" style={{ textDecoration: "none" }}>
                 {/* {pokemon!.type} */}
-                <div>{pokemon!.types.map((type:any)=>(type.type.name))}</div>
-              </p>
+                <li className="type-li">{pokemon!.types.map((type:any)=>(type.type.name))}</li>
+              </ul>
               {/* <p className="type" >{!typeTwo ? pokemon!.typeTwo : ''}</p> */}
             </div>
             <img className="image" src={pokemon!.image} alt={pokemon!.name} />

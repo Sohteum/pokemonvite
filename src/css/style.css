@@ -95,6 +95,13 @@ body {
   padding: 5px;
   border-radius: 20px;
 }
+.thumb-container .type .type-li {
+  list-style: none;
+}
+.thumb-container .type .type-li ::after {
+  clear: both;
+  content: ".";
+}
 .thumb-container .name {
   display: inline-block;
   color: #fff;

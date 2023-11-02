@@ -99,6 +99,14 @@ body {
     background-color: rgb(63, 255, 191);
     padding: 5px;
     border-radius: 20px;
+    .type-li{
+list-style: none;
+::after{
+  clear: both;
+  content: '.';
+
+}
+    }
   }
   .name {
     display: inline-block;
